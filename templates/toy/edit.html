@@ -1,0 +1,54 @@
+{% extends "base.html" %} {% block content %}
+<div id="editToy mt-5">
+  <div class="post mt-5">
+    <h1>Edit {{toy.name}}</h1>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %} 
+
+      <div class="form-group">
+        <label for="name">Toy Name: </label>
+       {{form.name}}
+      </div>
+      <div class="form-group">
+        <label for="pic">Current Image: </label>
+        <div>
+          <img src="../../toy/images/{{toy.image}}"  alt="" width="50%" />
+        </div>
+        <div class="form-group">
+        <label for="pic">Image: </label>
+        {{form.image}}
+
+      <!-- <% if(typeof msg!="undefined") {%>
+        <div class="text-danger"><%= msg %></div>
+        <% } %> -->
+      </div>
+
+      <div class="form-group">
+        <label for="rent">Rent price: </label>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">$</div>
+          </div>
+            {{form.rent_price}}
+          <div class="input-group-append">
+            <div class="input-group-text">/ week rent</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="sale">Sale price: </label>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">$</div>
+          </div>
+          {{form.sale_price}}
+          <div class="input-group-append">
+            <div class="input-group-text">/ buy</div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock content %}

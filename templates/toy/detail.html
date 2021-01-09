@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block content %}
+<div class="containerDetail pt-5">
+  <div class="card the">
+    <div class="row no-gutters">
+      <div class="col-md-7 col-lg-6 d-flex align-items-center">
+        <img src="../../toy/images/{{toy.image}}" class="card-img" alt="..." />
+      </div>
+      <div class="col-md-4 offset-md-1 col-lg-4">
+        <div class="card-body">
+          <h5 class="card-title text-info">{{toy.name}}</h5>
+          <p class="card-text">$ {{toy.rent_price}}/week rent</p>
+          <p class="card-text">$ {{toy.sale_price}}/buy</p>
+          <p class="card-text">or trade</p>
+          <p class="card-text">
+            <small class="text-muted"
+              >Created by {{toy.user.username}} - {{toy.created}}</small
+            >
+          </p>
+
+          {% if request.user.username == toy.user.username%}
+          <a href="/toy/{{toy.id}}/edit" class="btn btn-warning">Edit</a>
+          <form
+            action="/toy/{{toy.id}}/delete"
+            method="post"
+            style="display: inline"
+          >
+            {% csrf_token %}
+            <button class="btn btn-danger">Delete</button>
+          </form>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
